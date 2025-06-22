@@ -1,9 +1,13 @@
 FROM python:3.9-slim
+
 WORKDIR /app
-COPY requirements.txt
-COPY main.py
-COPY iris_model
+
+COPY requirements.txt .  
+COPY main.py .  
+COPY iris_model ./iris_model
 
 RUN pip install --no-cache-dir -r requirements.txt
-EXPOSE 8000
-CMD ["uvicorn","main:app","--host","0.0.0.0","--port","$PORT"]
+
+EXPOSE 8000  # Render ignores this, but it's good practice
+
+CMD ["sh", "-c", "uvicorn main:app --host 0.0.0.0 --port ${PORT}"]
