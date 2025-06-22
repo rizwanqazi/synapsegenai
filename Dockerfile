@@ -8,6 +8,6 @@ COPY iris_model ./iris_model
 
 RUN pip install --no-cache-dir -r requirements.txt
 
-EXPOSE 8000  # Render ignores this, but it's good practice
+EXPOSE 8000
 
-CMD ["sh", "-c", "uvicorn main:app --host 0.0.0.0 --port ${PORT}"]
+CMD sh -c 'uvicorn main:app --host 0.0.0.0 --port $PORT'
